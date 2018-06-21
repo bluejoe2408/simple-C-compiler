@@ -371,10 +371,7 @@ expression:
 
 
 declaration:
-	type_specifier ';' {
-		$$ = create_tree("declaration",2,$1,$2); //?
-	}
-	| type_specifier init_declarator_list ';' {
+	type_specifier init_declarator_list ';' {
 		$$ = create_tree("declaration",3,$1,$2,$3);
 	}
 	;
@@ -426,16 +423,13 @@ declarator:
 		$$ = create_tree("declarator",1,$1);
 	}
 	| '(' declarator ')' {
-		//.....
 		$$ = create_tree("declarator",3,$1,$2,$3);
 	}
 	| declarator '[' assignment_expression ']' {
 		//数组
-		//printf("assignment_expression");
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
 	}
 	| declarator '[' '*' ']' {
-		//....
 		$$ = create_tree("declarator",4,$1,$2,$3,$4);
 	}
 	| declarator '[' ']' {
