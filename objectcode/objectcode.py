@@ -1,3 +1,4 @@
+#-*-coding:utf-8-*-
 import os
 import re
 
@@ -15,7 +16,7 @@ def Load_Var(Inter):
 
 def Load_Inter(filename):
     lines=[]
-    for line in open(filename,'r',encoding='utf-8'):
+    for line in open(filename,'r'):
         line=line.replace('\r','').replace('\n','')
         if line =='':
             continue

@@ -12,14 +12,13 @@ using namespace std;
 class Praser {
 public:
 
-	Praser(gramTree*);	//构造函数
-	~Praser();	//析构函数
+	Praser(gramTree*);
+	~Praser();
 
 private:
-	map<string, funcNode> funcPool;			//函数池
-	vector<Block> blockStack;				//维护的栈
-	InnerCode innerCode;					//中间代码生成工具
-	//set<string> build_in_function;
+	map<string, funcNode> funcPool;			
+	vector<Block> blockStack;			
+	InnerCode innerCode;					
 
 	struct gramTree* root;
 
@@ -27,13 +26,13 @@ private:
 	void praserGramTree(struct gramTree* node);
 
 	
-	struct gramTree* praser_declaration(struct gramTree* node);		//分析praser_declaration的节点
+	struct gramTree* praser_declaration(struct gramTree* node);		
 	void praser_init_declarator_list(string, struct gramTree*);
-	void praser_init_declarator(string, struct gramTree* );			//分析praser_init_declarator的节点
+	void praser_init_declarator(string, struct gramTree* );			
 
 	struct gramTree* praser_function_definition(struct gramTree*);
-	void praser_parameter_list(struct gramTree*,string,bool);			//获取函数形参列表
-	void praser_parameter_declaration(struct gramTree*, string,bool);	//获取函数单个形参
+	void praser_parameter_list(struct gramTree*,string,bool);			
+	void praser_parameter_declaration(struct gramTree*, string,bool);	
 
 	struct gramTree* praser_statement(struct gramTree*);
 
@@ -47,9 +46,9 @@ private:
 	void praser_selection_statement(struct gramTree*);
 	void praser_iteration_statement(struct gramTree*);
 
-	varNode praser_assignment_expression(struct gramTree*);			//赋值表达式
-	varNode praser_logical_or_expression(struct gramTree*);			//逻辑或表达式
-	varNode praser_logical_and_expression(struct gramTree*);		//逻辑或表达式
+	varNode praser_assignment_expression(struct gramTree*);		
+	varNode praser_logical_or_expression(struct gramTree*);		
+	varNode praser_logical_and_expression(struct gramTree*);	
 	varNode praser_inclusive_or_expression(struct gramTree*);
 	varNode praser_exclusive_or_expression(struct gramTree*);
 	varNode praser_and_expression(struct gramTree*);
@@ -63,9 +62,9 @@ private:
 	varNode praser_primary_expression(struct gramTree*);
 
 
-	string lookupVar(string name);			//返回变量类型，找不到返回""
-	bool lookupCurruntVar(string name);		//查找当前块的var
-	struct varNode lookupNode(string name);	//返回变量节点
+	string lookupVar(string name);			
+	bool lookupCurruntVar(string name);		
+	struct varNode lookupNode(string name);	
 	string getFuncRType();
 	string getArrayType(string);
 	struct arrayNode getArrayNode(string);

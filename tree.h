@@ -15,11 +15,8 @@ struct gramTree {
     string content; //语法分析树每个节点的内容
     string name;
     int line;       //所在代码行数
-    struct gramTree *left;  //
-    struct gramTree *right;
-   /* double double_value;
-    int int_value;
-    string string_value;*/
+    struct gramTree *left;  //左儿子节点
+    struct gramTree *right; //右儿子节点，用于把自己的下级节点一个一个往下挂
 };
 
 extern struct gramTree *root;

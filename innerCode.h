@@ -5,21 +5,18 @@
 #include "tree.h"
 #include "block.h"
 #include "codeOptimize.h"
-#include<string>
+#include <string>
 extern struct gramTree* root;
-
 using namespace std;
 
 class InnerCode {
 private:
 	vector<string> codeList;
-
 public:
 	int tempNum = 0;
 	int varNum = 0;
 	int labelNum = 0;
 	int arrayNum = 0;
-
 	InnerCode();
 	void addCode(string);
 	void printCode();
@@ -28,7 +25,6 @@ public:
 	string createCodeforParameter(varNode node);
 	string createCodeforReturn(varNode node);
 	string createCodeforArgument(varNode node);
-
 	string getNodeName(varNode node);
 	string getarrayNodeName(arrayNode node);
 	string getLabelName();

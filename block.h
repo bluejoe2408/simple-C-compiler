@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-//±äÁ¿½Úµã
+//å˜é‡èŠ‚ç‚¹
 struct varNode {
 	string name;
 	string type;
@@ -19,15 +19,15 @@ struct varNode {
 	string boolString;
 };
 
-//º¯Êı½Úµã
+//å‡½æ•°èŠ‚ç‚¹
 struct funcNode {
 	bool isdefinied = false;
-	string name;				//º¯ÊıÃû
-	string rtype;				//º¯Êı·µ»ØÀàĞÍ
-	vector<varNode> paralist;	//¼ÇÂ¼ĞÎ²ÎÁĞ±í
+	string name;				//å‡½æ•°å
+	string rtype;				//å‡½æ•°è¿”å›å†…å®¹
+	vector<varNode> paralist;	
 };
 
-//Êı×é½Úµã
+//æ•°ç»„èŠ‚ç‚¹
 struct arrayNode {
 	string name;
 	string type;
@@ -35,13 +35,13 @@ struct arrayNode {
 };
 
 
-//blockµÄÄÚÈİ
+//blockçš„å†…å®¹
 class Block {
 public:
-	funcNode func;	//Èç¹ûÊÇº¯Êı£¬¼ÇÂ¼º¯ÊıÃû
-	bool isfunc = false;//¼ÇÂ¼ÊÇ·ñÊÇº¯Êı
-	map<string, struct varNode> varMap;		//±äÁ¿µÄmap
-	map<string, struct arrayNode> arrayMap;	//Êı×éµÄmap
+	funcNode func;
+	bool isfunc = false;
+	map<string, struct varNode> varMap;	
+	map<string, struct arrayNode> arrayMap;	
 	string breakLabelname;
 	bool canBreak = false;
 };

@@ -10,7 +10,6 @@ using namespace std;
 extern char *yytext;
 extern int column;
 extern FILE * yyin;
-extern FILE * yyout;
 gramTree *root;
 extern int yylineno;
 
@@ -27,31 +26,22 @@ void yyerror(const char*);
 %token <gt> AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token <gt> SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
 %token <gt> XOR_ASSIGN OR_ASSIGN TYPE_NAME
-
 %token <gt> CHAR INT DOUBLE VOID BOOL 
-
 %token <gt> CASE IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
-
 %token <gt> TRUE FALSE
-
 %token <gt> ';' ',' ':' '=' '[' ']' '.' '&' '!' '~' '-' '+' '*' '/' '%' '<' '>' '^' '|' '?' '{' '}' '(' ')'
 
 %type <gt> primary_expression postfix_expression argument_expression_list unary_expression unary_operator
 %type <gt> multiplicative_expression additive_expression shift_expression relational_expression equality_expression
 %type <gt> and_expression exclusive_or_expression inclusive_or_expression logical_and_expression logical_or_expression
 %type <gt> assignment_expression assignment_operator expression
-
 %type <gt> declaration init_declarator_list init_declarator type_specifier
-
 %type <gt> declarator 
-
 %type <gt> parameter_list parameter_declaration identifier_list
 %type <gt> abstract_declarator initializer initializer_list designation designator_list
 %type <gt> designator statement labeled_statement compound_statement block_item_list block_item expression_statement
 %type <gt> selection_statement iteration_statement jump_statement translation_unit external_declaration function_definition
 %type <gt> declaration_list
-
-
 
 %nonassoc LOWER_THAN_ELSE
 %nonassoc ELSE
@@ -68,29 +58,17 @@ primary_expression:
 	IDENTIFIER {
 		$$ = create_tree("primary_expression",1,$1);
 	}
-	|
-	TRUE {
+	| TRUE {
 		$$ = create_tree("primary_expression",1,$1);
-		// $$->type = "bool";
-		// $$->int_value = $1->int_value;
 	}
-	|
-	FALSE {
+	| FALSE {
 		$$ = create_tree("primary_expression",1,$1);
-		// $$->type = "bool";
-		// $$->int_value = $1->int_value;
 	}
 	| CONSTANT_INT {
-		//printf("%d",$1->int_value);
 		$$ = create_tree("primary_expression",1,$1);
-		// $$->type = "int";
-		// $$->int_value = $1->int_value;
-		
 	}
 	| CONSTANT_DOUBLE {
 		$$ = create_tree("primary_expression",1,$1);
-		// $$->type = "double";
-		// $$->double_value = $1->double_value;
 	}
 	| '(' expression ')'{
 		$$ = create_tree("primary_expression",3,$1,$2,$3);
@@ -136,7 +114,6 @@ argument_expression_list:
 /*一元表达式*/
 unary_expression:
 	postfix_expression{
-		//printf("postfix");
 		$$ = create_tree("unary_expression",1,$1);
 	}
 	| 	INC_OP unary_expression{
@@ -708,12 +685,10 @@ external_declaration:
 	function_definition {
 		$$ = create_tree("external_declaration",1,$1);
 		//函数定义
-		//printf("function_definition");
 	}
 	| declaration {
 		$$ = create_tree("external_declaration",1,$1);
 		//变量声明
-		//printf("declaration");
 	}
 	;
 
@@ -746,18 +721,12 @@ void yyerror(char const *s)
 
 
 int main(int argc,char* argv[]) {
-
 	yyin = fopen(argv[1],"r");
-	
-	//freopen("output/output.txt","w", stdout);
 	yyparse();
 	printf("\n");
 	eval(root,0);	//输出语法分析树
-
 	Praser praser(root);
-
 	freeGramTree(root);
-
 	fclose(yyin);
 	return 0;
 }

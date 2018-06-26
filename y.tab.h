@@ -142,7 +142,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 21 "compiler.y"
+#line 20 "compiler.y"
 {
 	struct gramTree* gt;
 }
